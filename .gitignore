@@ -1,0 +1,15 @@
+*/*.out
+*/*.gch
+*/*.swp
+*/*.o
+*/*.so
+*/*.a
+*/*.a
+*.a
+.cache
+*.gch
+*.swp
+*.o
+*.out
+*.so
+.vscode
