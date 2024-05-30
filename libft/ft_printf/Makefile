@@ -5,28 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/05/30 20:38:29 by okoca            ###   ########.fr        #
+#    Created: 2024/05/20 14:28:24 by okoca             #+#    #+#              #
+#    Updated: 2024/05/30 20:34:28 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRC_DIR = src/
+SRC_DIR = ./src/
 
-INCLUDES_DIR = includes
+INCLUDES_DIR = ./includes/
 
-LIBFT = libft
+CFLAGS = -Wall -Werror -Wextra -I../
 
-CFLAGS = -Wall -Werror -Wextra -I${INCLUDES_DIR} -I${LIBFT}
+SRC_FILES = ft_printf.c \
+	handle.c \
+	main_flags.c \
+	utils.c
 
-LDFLAGS = -L${LIBFT} -lft
-
-SRC_FILES = main.c \
-			lst.c \
-			utils.c
-
-NAME = push_swap
+NAME = libftprintf.a
 
 SRC = ${addprefix ${SRC_DIR}, ${SRC_FILES}}
 
@@ -35,22 +32,17 @@ OBJS = ${SRC:.c=.o}
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS} build_lib
-	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o ${NAME}
+${NAME}: ${OBJS}
+	ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
-build_lib:
-	make -C ${LIBFT}
-
 clean:
-	make clean -C ${LIBFT}
 	rm -f ${OBJS}
 
 fclean: clean
-	make fclean -C ${LIBFT}
 	rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all build_lib clean fclean re
+.PHONY: all clean fclean re

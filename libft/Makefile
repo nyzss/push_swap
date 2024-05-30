@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by okoca             #+#    #+#              #
-#    Updated: 2024/05/23 09:39:35 by okoca            ###   ########.fr        #
+#    Updated: 2024/05/30 20:37:44 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,8 @@ SRC = ft_atoi.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_fd.c
-
-BONUS = ft_lstnew_bonus.c \
+	ft_putnbr_fd.c \
+	ft_lstnew_bonus.c \
 	ft_lstadd_front_bonus.c \
 	ft_lstsize_bonus.c \
 	ft_lstlast_bonus.c \
@@ -63,27 +62,27 @@ NAME = libft.a
 
 OBJS = ${SRC:.c=.o}
 
-BONUS_OBJS = ${BONUS:.c=.o}
+FT_PRINTF = ft_printf
 
 %.o: %.c
 	${CC} ${CFLAGS} $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
+	make -C ${FT_PRINTF}
+	cp ${FT_PRINTF}/libftprintf.a ${NAME}
 	ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
-bonus: ${NAME} ${BONUS_OBJS}
-	ar rc ${NAME} ${BONUS_OBJS}
-
 clean:
 	rm -f ${OBJS}
-	rm -f ${BONUS_OBJS}
+	make clean -C ${FT_PRINTF}
 
 fclean: clean
+	make fclean -C ${FT_PRINTF}
 	rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 
