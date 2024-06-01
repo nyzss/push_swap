@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:35:26 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 22:39:45 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/01 22:59:37 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 
 void	ps_swap(t_node *node)
 {
-	t_node	*tmp;
-	int		i;
 	int		tmp_content;
 
-	i = 0;
-	tmp = node;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-		if (i > 1)
-			break ;
-	}
-	if (i < 2)
+	if (!ps_check_lst_len(node, 2))
 		return ;
 	tmp_content = node->next->content;
 	node->next->content = node->content;
@@ -43,22 +32,46 @@ void	ps_swap_both(t_node *stack_a, t_node *stack_b)
 void	ps_push(t_node **first_stack, t_node **second_stack)
 {
 	t_node	*tmp;
-	t_node	*check_tmp;
-	int		i;
 
-	i = 0;
-	check_tmp = (*second_stack);
-	while (check_tmp != NULL)
-	{
-		i++;
-		check_tmp = check_tmp->next;
-		if (i > 1)
-			break ;
-	}
-	if (i < 1)
+	if (!ps_check_lst_len(*second_stack, 1))
 		return ;
 	tmp = (*second_stack)->next;
 	(*second_stack)->next = (*first_stack);
 	(*first_stack) = (*second_stack);
 	(*second_stack) = tmp;
+}
+
+int		ps_check_lst_len(t_node *head, int len)
+{
+	int	i;
+
+	i = 0;
+	while (head != NULL)
+	{
+		head = head->next;
+		i++;
+		if (i >= len)
+			break ;
+	}
+	if (i < len)
+		return (0);
+	return (1);
+}
+
+void	ps_rotate(t_node **head)
+{
+	t_node	*tmp;
+
+	if (!ps_check_lst_len(*head, 2))
+		return ;
+	tmp = (*head);
+	(*head) = (*head)->next;
+	tmp->next = NULL;
+	ps_last(*head)->next = tmp;
+}
+
+void	ps_rotate_both(t_node **first_stack, t_node **second_stack)
+{
+	ps_rotate(first_stack);
+	ps_rotate(second_stack);
 }
