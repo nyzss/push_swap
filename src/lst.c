@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:18:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 21:02:47 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/01 22:24:42 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void	ps_add_back(t_node **head, t_node *new)
 
 void	ps_print_lst(t_node *node)
 {
+	ft_printf("\n----------\n\n");
 	while (node != NULL)
 	{
 		ft_printf("args: %d\n", node->content);
 		node = node->next;
 	}
+	ft_printf("\n\n----------\n");
 }
 
 void	ps_clear(t_node **head)

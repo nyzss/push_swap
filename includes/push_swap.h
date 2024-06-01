@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 11:37:30 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/01 22:16:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,11 @@ t_node	*ps_last(t_node *head);
 void	ps_add_back(t_node **head, t_node *new);
 
 void	ps_clear(t_node **head);
+
+void	ps_swap(t_node *node);
+
+void	ps_swap_both(t_node *stack_a, t_node *stack_b);
+
+void	ps_push_a(t_node **stack_a, t_node **stack_b);
 
 #endif
