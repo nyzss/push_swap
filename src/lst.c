@@ -6,20 +6,64 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:18:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/05/30 20:42:06 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/01 11:41:06 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_print_lst(t_list *node)
+t_node	*ps_create_node(int content)
 {
-	t_list	*tmp;
+	t_node	*new;
+
+	new = (t_node *)malloc(sizeof(t_node));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
+
+t_node	*ps_last(t_node *head)
+{
+	t_node	*tmp;
+
+	tmp = head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
+}
+
+void	ps_add_back(t_node **head, t_node *new)
+{
+	if (!(*head))
+		*head = new;
+	else
+		ps_last(*head)->next = new;
+}
+
+void	ps_print_lst(t_node *node)
+{
+	t_node	*tmp;
 
 	tmp = node;
 	while (tmp != NULL)
 	{
-		ft_printf("content: %d\n", (int)(long)tmp->content);
+		ft_printf("content: %d\n", tmp->content);
 		tmp = tmp->next;
 	}
+}
+
+void	ps_clear(t_node **head)
+{
+	t_node	*tmp;
+
+	tmp = (*head);
+	while (tmp != NULL)
+	{
+		(*head) = (*head)->next;
+		free(tmp);
+		tmp = (*head);
+	}
+	*head = NULL;
 }
