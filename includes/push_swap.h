@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/02 17:11:13 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/02 22:00:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,15 @@ int		ps_check_lst_len(t_node *head, int len);
 void	ps_rotate_down(t_node **head);
 
 void	ps_rotate_down_both(t_node **first_stack, t_node **second_stack);
+
+void	ps_sorting_algo(t_node **stack_a, int median);
+
+int		ps_check_sorted(t_node *stack);
+
+int		ps_get_size(t_node *stack);
+
+int		ps_get_smallest(t_node *stack);
+
+int		ps_get_median(int ac, char **av);
 
 #endif
