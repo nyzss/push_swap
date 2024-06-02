@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 22:56:01 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/02 16:47:36 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ void	ps_swap_both(t_node *stack_a, t_node *stack_b);
 
 void	ps_push(t_node **stack_a, t_node **stack_b);
 
-void	ps_rotate(t_node **head);
+void	ps_rotate_up(t_node **head);
 
-void	ps_rotate_both(t_node **first_stack, t_node **second_stack);
+void	ps_rotate_up_both(t_node **first_stack, t_node **second_stack);
 
 int		ps_check_lst_len(t_node *head, int len);
+
+void	ps_rotate_down(t_node **head);
+
+void	ps_rotate_down_both(t_node **first_stack, t_node **second_stack);
 
 #endif

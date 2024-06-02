@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 22:51:57 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/02 17:06:15 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int		main(int ac, char **av)
 
 	// ps_push(&node, &stack_b);
 	// ps_push(&node, &stack_b);
-	ps_rotate(&node);
+	ps_rotate_down(&node);
+	ps_rotate_down(&node);
 
 	ft_printf("\n\n#########AFTER: \n\n");
 	ft_printf("stack: a");
