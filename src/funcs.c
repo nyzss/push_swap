@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:35:26 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/02 17:06:44 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/02 17:21:02 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void	ps_rotate_down(t_node **head)
 
 void	ps_rotate_down_both(t_node **first_stack, t_node **second_stack)
 {
-	ps_rotate_up(first_stack);
-	ps_rotate_up(second_stack);
+	ps_rotate_down(first_stack);
+	ps_rotate_down(second_stack);
 }
