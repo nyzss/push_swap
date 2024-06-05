@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/02 22:00:58 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/05 22:16:49 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ void	ps_swap(t_node *node);
 
 void	ps_swap_both(t_node *stack_a, t_node *stack_b);
 
-// pushes the first element of 'second_stack' to 'first_stack'
-//so second_stack -> first_stack
-void	ps_push(t_node **first_stack, t_node **second_stack);
+void	print_stuff(t_node **stack_a, t_node **stack_b);
+
+// pushes the first element of 'source' to 'destination'
+//so source -> destination
+void	ps_push(t_node **destination, t_node **source);
+
+void	ps_sort_algo(t_node **stack_a);
 
 void	ps_rotate_up(t_node **head);
 
@@ -57,14 +61,14 @@ void	ps_rotate_down(t_node **head);
 
 void	ps_rotate_down_both(t_node **first_stack, t_node **second_stack);
 
-void	ps_sorting_algo(t_node **stack_a, int median);
-
 int		ps_check_sorted(t_node *stack);
 
 int		ps_get_size(t_node *stack);
 
-int		ps_get_smallest(t_node *stack);
+// void	ps_sorting_algo(t_node **stack_a, int median);
 
-int		ps_get_median(int ac, char **av);
+// int		ps_get_smallest(t_node *stack);
+
+// int		ps_get_median(int ac, char **av);
 
 #endif

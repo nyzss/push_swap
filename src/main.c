@@ -6,36 +6,18 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/05 16:47:21 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/05 22:29:30 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stuff(t_node **stack_a)
+void	print_stuff(t_node **stack_a, t_node **stack_b)
 {
-	ft_printf("\n\n#########BEFORE: \n\n");
 	ft_printf("stack: a");
 	ps_print_lst(*stack_a);
 	ft_printf("stack: b");
-	// ps_print_lst(stack_b);
-
-	// ps_swap(stack_a);
-	// ps_push(&stack_b, &stack_a);
-	// ps_push(&stack_b, &stack_a);
-	// ps_push(&stack_b, &stack_a);
-	// ps_rotate_up_both(&stack_a, &stack_b);
-	// ps_rotate_down_both(&stack_a, &stack_b);
-	// ps_swap(stack_a);
-	// ps_push(&stack_a, &stack_b);
-	// ps_push(&stack_a, &stack_b);
-	// ps_push(&stack_a, &stack_b);
-	ft_printf("\n\n#########AFTER: \n\n");
-	ft_printf("stack: a");
-	ps_print_lst(*stack_a);
-	ft_printf("stack: b");
-	// ps_print_lst(stack_b);
-	ft_printf("\n\n\n");
+	ps_print_lst(*stack_b);
 }
 
 int		main(int ac, char **av)
@@ -59,7 +41,8 @@ int		main(int ac, char **av)
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
-	print_stuff(&stack_a);
+	ps_sort_algo(&stack_a);
+	// print_stuff(&stack_a);
 	ps_clear(&stack_a);
 }
 
@@ -97,12 +80,55 @@ int	ps_check_sorted(t_node *stack)
 void	ps_sort_algo(t_node **stack_a)
 {
 	t_node	*tmp;
+	t_node	*stack_b;
 	int		size;
+	int		initial_size_b;
+	int		i;
+	int		minimum;
+	int		maximum;
 
-	size = 0;
+	i = 0;
+	minimum = 0;
+	maximum = 0;
+	stack_b = NULL;
 	tmp = *stack_a;
-	while (tmp != NULL)
+	initial_size_b = 0;
+	size = ps_get_size(tmp);
+
+	//ignore
+	printf("\n\nbefore: \n\n");
+	print_stuff(stack_a, &stack_b);
+	//ignore
+	printf("size: %d\n", size);
+
+	while (i < size)
 	{
-		tmp = tmp->next;
+		if (initial_size_b == 1)
+		{
+			ps_push(&stack_b, &tmp);
+			ps_push(&stack_b, &tmp);
+			if (stack_b->content > stack_b->next->content)
+			{
+				maximum = stack_b->content;
+				minimum = stack_b->next->content;
+			}
+			else
+			{
+				maximum = stack_b->next->content;
+				minimum = stack_b->content;
+				ps_rotate_up(&stack_b);
+
+			}
+			initial_size_b = 1;
+			i += 2;
+		}
+		i++;
 	}
+	printf("\nmaximum: %d\n", maximum);
+	printf("\nminimum: %d\n", minimum);
+	printf("\n\nafter: \n\n");
+	printf("size: %d\n", size);
+	print_stuff(stack_a, &stack_b);
 }
+//tu push temp, du coup temp change de place et fini dans la stack_b,
+//le mieux ca serait d'avoir un size, et iter pendant la size?
