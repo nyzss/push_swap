@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/05 22:29:30 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/06 13:17:42 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		main(int ac, char **av)
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
-	ps_sort_algo(&stack_a);
+	other_sort(&stack_a);
 	// print_stuff(&stack_a);
 	ps_clear(&stack_a);
 }
@@ -77,52 +77,167 @@ int	ps_check_sorted(t_node *stack)
 	return (1);
 }
 
+/*
+GET MEDIAN
+
+calculate how many numbers that are bigger than median (bigger cause you just push without having
+to rotate to place it accordingly)
+rotate a till you get
+*/
+
+int		ps_get_median(t_node *stack)
+{
+	int	median;
+	int	*tab;
+	int	i;
+	int	j;
+	int	size;
+	int	tmp;
+
+	i = 0;
+	median = 0;
+	tmp = 0;
+	size = ps_get_size(stack);
+	tab = malloc(sizeof(int) * size);
+	if (!tab)
+		return (0);
+	while (stack != NULL)
+	{
+		tab[i] = stack->content;
+		stack = stack->next;
+		i++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		j = i;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+			{
+				tmp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	free(tab);
+	return (tab[size / 2]);
+}
+
+int		ps_check_median(t_node *stack, int median)
+{
+	while (stack != NULL)
+	{
+		if (stack->content < median)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
+void	other_sort(t_node **stack_a)
+{
+	t_node	*stack_b;
+	int		size;
+	int		median;
+
+	stack_b = NULL;
+	median = ps_get_median(*stack_a);
+	size = ps_get_size(*stack_a);
+
+	//ignore
+	printf("\n\n------------#####BEFORE------------- \n\n");
+	print_stuff(stack_a, &stack_b);
+	printf("size: %d\n", size);
+	printf("median: %d\n", median);
+	//ignore
+
+	while (size > 3)
+	{
+		if ((*stack_a)->content <= median)
+			ps_push(&stack_b, stack_a);
+		else
+		{
+			if ((*stack_a)->next->content <= median)
+				ps_rotate_up(stack_a);
+			else if (ps_last(*stack_a)->content <= median)
+				ps_rotate_down(stack_a);
+			else
+				ps_rotate_up(stack_a);
+		}
+		// size = ps_get_size(*stack_a);
+		size--;
+	}
+	printf("\n\n-----------###AFTER--------------- \n\n");
+	printf("size: %d\n", size);
+	printf("median: %d\n", median);
+	print_stuff(stack_a, &stack_b);
+}
+
 void	ps_sort_algo(t_node **stack_a)
 {
-	t_node	*tmp;
+	t_node	**tmp;
 	t_node	*stack_b;
 	int		size;
 	int		initial_size_b;
-	int		i;
 	int		minimum;
 	int		maximum;
 
-	i = 0;
 	minimum = 0;
 	maximum = 0;
 	stack_b = NULL;
-	tmp = *stack_a;
+	tmp = stack_a;
 	initial_size_b = 0;
-	size = ps_get_size(tmp);
+	size = ps_get_size(*stack_a);
 
 	//ignore
 	printf("\n\nbefore: \n\n");
 	print_stuff(stack_a, &stack_b);
-	//ignore
 	printf("size: %d\n", size);
+	//ignore
 
-	while (i < size)
+	ps_push(&stack_b, stack_a);
+	ps_push(&stack_b, stack_a);
+	if (stack_b->content > stack_b->next->content)
 	{
-		if (initial_size_b == 1)
-		{
-			ps_push(&stack_b, &tmp);
-			ps_push(&stack_b, &tmp);
-			if (stack_b->content > stack_b->next->content)
-			{
-				maximum = stack_b->content;
-				minimum = stack_b->next->content;
-			}
-			else
-			{
-				maximum = stack_b->next->content;
-				minimum = stack_b->content;
-				ps_rotate_up(&stack_b);
+		maximum = stack_b->content;
+		minimum = stack_b->next->content;
+	}
+	else
+	{
+		maximum = stack_b->next->content;
+		minimum = stack_b->content;
+		ps_rotate_up(&stack_b);
+	}
 
-			}
-			initial_size_b = 1;
-			i += 2;
+	while (size > 3)
+	{
+		if ((*stack_a)->content < minimum)
+		{
+			minimum = (*stack_a)->content;
+			ps_push(&stack_b, stack_a);
+			ps_rotate_up(&stack_b);
 		}
-		i++;
+		else if ((*stack_a)->content > maximum)
+		{
+			maximum = (*stack_a)->content;
+			ps_push(&stack_b, stack_a);
+		}
+		if ((*stack_a)->next->content > maximum)
+			ps_rotate_up(stack_a);
+		else if (ps_last(*stack_a)->content > maximum)
+			ps_rotate_down(stack_a);
+		else if ((*stack_a)->next->content < minimum)
+			ps_rotate_up(stack_a);
+		else if (ps_last(*stack_a)->content < minimum)
+			ps_rotate_down(stack_a);
+		else
+			ps_rotate_up(stack_a);
+		size = ps_get_size(*stack_a);
+		// size--;
 	}
 	printf("\nmaximum: %d\n", maximum);
 	printf("\nminimum: %d\n", minimum);

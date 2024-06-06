@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/05 22:16:49 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/06 11:36:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ps_swap(t_node *node);
 void	ps_swap_both(t_node *stack_a, t_node *stack_b);
 
 void	print_stuff(t_node **stack_a, t_node **stack_b);
+
+void	other_sort(t_node **stack_a);
 
 // pushes the first element of 'source' to 'destination'
 //so source -> destination

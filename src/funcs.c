@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:35:26 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/05 22:00:19 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/06 11:31:05 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ps_push(t_node **destination, t_node **source)
 	(*destination) = (*source);
 	(*source) = tmp;
 }
-
 int		ps_check_lst_len(t_node *head, int len)
 {
 	int	i;
