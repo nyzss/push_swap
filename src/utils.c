@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:58:15 by okoca             #+#    #+#             */
-/*   Updated: 2024/05/30 20:51:01 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/06 13:47:09 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,4 @@ int		*ps_args_to_tab(int argc, char **argv)
 		i++;
 	}
 	return (tab);
-}
-
-void	ps_dummy_fn(void *f)
-{
-	(void)f;
-	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/06 13:17:42 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/06 14:53:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,17 @@ int		ps_get_median(t_node *stack)
 		}
 		i++;
 	}
+	printf("current median: %d\n", tab[size / 2]);
+	median = tab[size / 2];
 	free(tab);
-	return (tab[size / 2]);
+	return (median);
 }
 
 int		ps_check_median(t_node *stack, int median)
 {
 	while (stack != NULL)
 	{
-		if (stack->content < median)
+		if (stack->content <= median)
 			return (1);
 		stack = stack->next;
 	}
@@ -150,9 +152,9 @@ void	other_sort(t_node **stack_a)
 
 	//ignore
 	printf("\n\n------------#####BEFORE------------- \n\n");
-	print_stuff(stack_a, &stack_b);
 	printf("size: %d\n", size);
 	printf("median: %d\n", median);
+	print_stuff(stack_a, &stack_b);
 	//ignore
 
 	while (size > 3)
@@ -166,15 +168,19 @@ void	other_sort(t_node **stack_a)
 			else if (ps_last(*stack_a)->content <= median)
 				ps_rotate_down(stack_a);
 			else
-				ps_rotate_up(stack_a);
+				ps_rotate_down(stack_a);
 		}
-		// size = ps_get_size(*stack_a);
-		size--;
+		size = ps_get_size(*stack_a);
+		if (!ps_check_median(*stack_a, median))
+			median = ps_get_median(*stack_a);
 	}
+
+	//ignore
 	printf("\n\n-----------###AFTER--------------- \n\n");
 	printf("size: %d\n", size);
 	printf("median: %d\n", median);
 	print_stuff(stack_a, &stack_b);
+	//ignore
 }
 
 void	ps_sort_algo(t_node **stack_a)
