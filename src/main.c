@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/07 16:33:37 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:47:13 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	print_stuff(t_node **stack_a, t_node **stack_b)
 	ps_print_lst(*stack_b);
 }
 
-void	ps_sort_algo(t_node **stack_a)
-{
-	t_node	*stack_b;
+// void	ps_sort_algo(t_node **stack_a)
+// {
+// 	t_node	*stack_b;
 
-	stack_b = NULL;
-	// int
-}
+// 	stack_b = NULL;
+// }
 
 void	ps_sort_tab(int ac, int **tab)
 {
@@ -62,6 +61,7 @@ t_node	**ps_create_stack(int ac, char **av)
 
 	i = 0;
 	stack = NULL;
+	*stack = NULL;
 	tab = (int *)malloc(sizeof(int) * ac);
 	while (i < ac)
 	{
@@ -88,7 +88,7 @@ t_node	**ps_create_stack(int ac, char **av)
 int		main(int ac, char **av)
 {
 	t_node	**stack_a;
-	t_node	*tmp;
+	// t_node	*tmp;
 	int		i;
 
 	i = 0;
@@ -99,7 +99,7 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	stack_a = ps_create_stack(ac - 1, av + 1);
-	ps_sort_algo(stack_a);
+	// ps_sort_algo(stack_a);
 	ps_clear(stack_a);
 }
 
