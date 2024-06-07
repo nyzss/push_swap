@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/06 11:36:55 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/07 16:33:22 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@
 typedef struct node
 {
 	struct node *next;
-	int	content;
+	int			content;
+	int			index;
 } t_node;
 
 int		*ps_args_to_tab(int argc, char **argv);
 
-void	ps_dummy_fn(void *f);
-
 void	ps_print_lst(t_node *node);
 
-t_node	*ps_create_node(int content);
+t_node	*ps_create_node(int content, int index);
 
 t_node	*ps_last(t_node *head);
 

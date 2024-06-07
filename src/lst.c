@@ -6,13 +6,13 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:18:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/01 22:24:42 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/07 16:25:11 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ps_create_node(int content)
+t_node	*ps_create_node(int content, int index)
 {
 	t_node	*new;
 
@@ -21,6 +21,7 @@ t_node	*ps_create_node(int content)
 		return (NULL);
 	new->content = content;
 	new->next = NULL;
+	new->index = index;
 	return (new);
 }
 
