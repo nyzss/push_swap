@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 12:26:27 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 19:37:11 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,22 @@ int		ps_get_maxbits(int size);
 
 int		*ps_create_first_tab(int ac, char **av);
 
+void	ps_sort_tab(int ac, int **tab);
+
+int		*ps_create_stack(int ac, char **av);
+
+//sort
+void	ps_sort(t_node **stack_a, t_node **stack_b);
+
+void	ps_sort_algo(t_node **stack_a, t_node **stack_b);
+
+void	ps_sort_tree(t_node **stack_a);
+//sort
+
 //HELPER
 void	ps_swap(t_node *node, int id);
 
 void	ps_push(t_node **destination, t_node **source, int id);
-
-void	ps_sort_algo(t_node **stack_a, t_node **stack_b);
 
 void	ps_rotate_up(t_node **head, int id);
 

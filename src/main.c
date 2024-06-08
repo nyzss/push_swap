@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 12:26:09 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 19:40:38 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,57 +40,20 @@ void	ps_sort_algo(t_node **stack_a, t_node **stack_b)
 	}
 }
 
-void	ps_sort_tab(int ac, int **tab)
+void	ps_sort(t_node **stack_a, t_node **stack_b)
 {
-	int	i;
-	int	j;
-	int	tmp;
+	int	size;
 
-	i = 0;
-	tmp = 0;
-	while (i < ac)
+	size = ps_get_size(*stack_a);
+	if (size == 2)
 	{
-		j = i;
-		while (j < ac)
-		{
-			if (tab[0][i] > tab[0][j])
-			{
-				tmp = tab[0][i];
-				tab[0][i] = tab[0][j];
-				tab[0][j] = tmp;
-			}
-			j++;
-		}
-		i++;
+		if ((*stack_a)->index > (*stack_a)->next->index)
+			ps_swap(*stack_a, STACK_A);
 	}
-}
-
-int	*ps_create_stack(int ac, char **av)
-{
-	int		i;
-	int		j;
-	int		*tab;
-	int		*another_tab;
-
-	i = 0;
-	another_tab = (int *)malloc(sizeof(int) * ac);
-	tab = ps_create_first_tab(ac, av);
-	ps_sort_tab(ac, &tab);
-	i = 0;
-	while (i < ac)
-	{
-		j = 0;
-		while (j < ac)
-		{
-			if (ft_atoi(av[i]) == tab[j])
-				break ;
-			j++;
-		}
-		another_tab[i] = j;
-		i++;
-	}
-	free(tab);
-	return (another_tab);
+	else if (size == 3)
+		ps_sort_tree(stack_a);
+	else
+		ps_sort_algo(stack_a, stack_b);
 }
 
 int	handle(int ac, char **av)
@@ -114,7 +77,7 @@ int	handle(int ac, char **av)
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
-	ps_sort_algo(&stack_a, &stack_b);
+	ps_sort(&stack_a, &stack_b);
 	ps_clear(&stack_a);
 	ps_clear(&stack_b);
 	return (1);
