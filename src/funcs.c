@@ -6,13 +6,13 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:35:26 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/06 11:31:05 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 12:01:12 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_swap(t_node *node)
+void	ps_swap(t_node *node, int id)
 {
 	int		tmp_content;
 
@@ -21,15 +21,13 @@ void	ps_swap(t_node *node)
 	tmp_content = node->next->content;
 	node->next->content = node->content;
 	node->content = tmp_content;
+	if (id == STACK_A)
+		ft_printf("sa\n");
+	else
+		ft_printf("sb\n");
 }
 
-void	ps_swap_both(t_node *stack_a, t_node *stack_b)
-{
-	ps_swap(stack_a);
-	ps_swap(stack_b);
-}
-
-void	ps_push(t_node **destination, t_node **source)
+void	ps_push(t_node **destination, t_node **source, int id)
 {
 	t_node	*tmp;
 
@@ -39,8 +37,13 @@ void	ps_push(t_node **destination, t_node **source)
 	(*source)->next = (*destination);
 	(*destination) = (*source);
 	(*source) = tmp;
+	if (id == STACK_A)
+		ft_printf("pa\n");
+	else
+		ft_printf("pb\n");
 }
-int		ps_check_lst_len(t_node *head, int len)
+
+int	ps_check_lst_len(t_node *head, int len)
 {
 	int	i;
 
@@ -57,7 +60,7 @@ int		ps_check_lst_len(t_node *head, int len)
 	return (1);
 }
 
-void	ps_rotate_up(t_node **head)
+void	ps_rotate_up(t_node **head, int id)
 {
 	t_node	*tmp;
 
@@ -67,15 +70,13 @@ void	ps_rotate_up(t_node **head)
 	(*head) = (*head)->next;
 	tmp->next = NULL;
 	ps_last(*head)->next = tmp;
+	if (id == STACK_A)
+		ft_printf("ra\n");
+	else
+		ft_printf("rb\n");
 }
 
-void	ps_rotate_up_both(t_node **first_stack, t_node **second_stack)
-{
-	ps_rotate_up(first_stack);
-	ps_rotate_up(second_stack);
-}
-
-void	ps_rotate_down(t_node **head)
+void	ps_rotate_down(t_node **head, int id)
 {
 	t_node	*tmp;
 
@@ -87,10 +88,8 @@ void	ps_rotate_down(t_node **head)
 	tmp->next->next = (*head);
 	(*head) = tmp->next;
 	tmp->next = NULL;
-}
-
-void	ps_rotate_down_both(t_node **first_stack, t_node **second_stack)
-{
-	ps_rotate_down(first_stack);
-	ps_rotate_down(second_stack);
+	if (id == STACK_A)
+		ft_printf("rra\n");
+	else
+		ft_printf("rrb\n");
 }
