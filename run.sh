@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 22:07:07 by okoca             #+#    #+#              #
-#    Updated: 2024/06/08 22:26:32 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/08 22:33:55 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ COUNT=100
 threshold=50
 
 RANDOM_ARG=$(shuf -i 1-$RANGE -n $COUNT --random-source /dev/urandom | tr '\n' ' ')
+
+clear
 
 # echo -e "args: \n${GRAY}$(echo $RANDOM_ARG | tr '\n' ' ')${NC}\n"
 
@@ -72,25 +74,18 @@ else
 fi
 #####################################
 
-
-
-
-
 echo -en '-----------------------\n\n'
 
 output=$(./push_swap $ARG | ./checker_linux $ARG)
 
 if [[ $output == "OK" ]]; then
-    echo -e "${GREEN}${output}${NC}"
+    echo -e "The stack has been sorted: ${GREEN}${output}${NC}"
 elif [[ $output == "KO" ]]; then
-    echo -e "${YELLOW}${output}${NC}"
+    echo -e "Not sorted: ${YELLOW}${output}${NC}"
 elif [[ $output == "Error" ]]; then
-    echo -e "${RED}${output}${NC}"
+    echo -e "${RED}${output}${NC}!"
 else
     echo -e "${output}"
 fi
 
-echo -e "Total number of instructions: $(./push_swap $ARG | wc -l)"
-
-echo -en '\n'
-echo -en '\n'
+echo -e "Total number of instructions: ${BLUE}$(./push_swap $ARG | wc -l)${NC}\n\n"
