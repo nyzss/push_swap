@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:18:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 10:20:33 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 10:42:38 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_node	*ps_create_node(int content, int index)
 	if (!new)
 		return (NULL);
 	new->content = content;
-	new->next = NULL;
 	new->index = index;
+	new->next = NULL;
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/01 21:43:24 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/08 10:34:22 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES_DIR = includes
 
 LIBFT = libft
 
-CFLAGS = -Wall -Werror -Wextra -I${INCLUDES_DIR} -I${LIBFT}
+CFLAGS = -Wall -Werror -Wextra -I${INCLUDES_DIR} -I${LIBFT} -g
 
 LDFLAGS = -L${LIBFT} -lft
 
