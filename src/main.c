@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/07 17:47:13 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 10:22:30 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,59 @@
 void	print_stuff(t_node **stack_a, t_node **stack_b)
 {
 	ft_printf("stack: a");
-	ps_print_lst(*stack_a);
+	if (stack_a)
+		ps_print_lst(*stack_a);
 	ft_printf("stack: b");
+	if (stack_b)
 	ps_print_lst(*stack_b);
 }
 
-// void	ps_sort_algo(t_node **stack_a)
-// {
-// 	t_node	*stack_b;
+void	ps_sort_algo(t_node **stack_a, t_node **stack_b)
+{
+	int		max_index;
+	int		max_bits;
+	int		i;
+	int		size;
+	int		j;
 
-// 	stack_b = NULL;
+	j = 0;
+	i = 0;
+	max_bits = 0;
+	size = ps_get_size(*stack_a);
+	max_index = size - 1;
+	while (max_index >> max_bits != 0)
+		++max_bits;
+	while (i < max_bits)
+	{
+		while (j < size)
+		{
+			if ((((*stack_a)->index >> i)&1) == 1)
+				ps_rotate_up(stack_a);
+			else
+				ps_push(stack_b, stack_a);
+			++j;
+		}
+		while (ps_get_size(*stack_a) != 0)
+			ps_push(stack_a, stack_b);
+		++i;
+	}
+// // while ((max_num >> max_bits) != 0) ++max_bits;
+// for (int i = 0 ; i < max_bits ; ++i) // repeat for max_bits times
+// {
+//     for(int j = 0 ; j < size ; ++j)
+//     {
+//         int num = a.top(); // top number of A
+//         if ((num >> i)&1 == 1) ra();
+//         // if the (i + 1)-th bit is 1, leave in stack a
+//         else pb();
+//         // otherwise push to stack b
+//     }
+//     // put into boxes done
+//     while (!b.empty()) pa(); // while stack b is not empty, do pa
+
+//     // connect numbers done
 // }
+}
 
 void	ps_sort_tab(int ac, int **tab)
 {
@@ -40,11 +82,11 @@ void	ps_sort_tab(int ac, int **tab)
 		j = i;
 		while (j < ac)
 		{
-			if (*tab[i] > *tab[j])
+			if (tab[0][i] > tab[0][j])
 			{
-				tmp = *tab[i];
-				*tab[i] = *tab[j];
-				*tab[j] = tmp;
+				tmp = tab[0][i];
+				tab[0][i] = tab[0][j];
+				tab[0][j] = tmp;
 			}
 			j++;
 		}
@@ -52,55 +94,79 @@ void	ps_sort_tab(int ac, int **tab)
 	}
 }
 
-t_node	**ps_create_stack(int ac, char **av)
+void	ps_create_stack(t_node **stack ,int ac, char **av)
 {
 	int		i;
 	int		j;
 	int		*tab;
-	t_node	**stack;
+
+	(void)stack;
 
 	i = 0;
-	stack = NULL;
-	*stack = NULL;
+	j = 0;
 	tab = (int *)malloc(sizeof(int) * ac);
 	while (i < ac)
 	{
 		tab[i] = ft_atoi(av[i]);
 		i++;
 	}
-	i = 0;
 	ps_sort_tab(ac, &tab);
-	while (i < ac)
+	while (j < ac)
 	{
-		j = 0;
-		while (j < ac)
-		{
-			if (ft_atoi(av[i]) == tab[j])
-				break ;
-			j++;
-		}
-		ps_add_back(stack, ps_create_node(ft_atoi(av[i]), j));
-		i++;
+		printf("val: %d\n", tab[j]);
+		j++;
 	}
-	return (stack);
 }
+
+// void	ps_create_stack(t_node **stack ,int ac, char **av)
+// {
+// 	int		i;
+// 	int		j;
+// 	int		*tab;
+
+// 	i = 0;
+// 	tab = (int *)malloc(sizeof(int) * ac);
+// 	while (i < ac)
+// 	{
+// 		tab[i] = ft_atoi(av[i]);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	ps_sort_tab(ac, &tab);
+// 	while (i < ac)
+// 	{
+// 		j = 0;
+// 		while (j < ac)
+// 		{
+// 			if (ft_atoi(av[i]) == tab[j])
+// 				break ;
+// 			j++;
+// 		}
+// 		ps_add_back(stack, ps_create_node(ft_atoi(av[i]), j));
+// 		i++;
+// 	}
+// 	free(tab);
+// }
 
 int		main(int ac, char **av)
 {
 	t_node	**stack_a;
-	// t_node	*tmp;
+	t_node	**stack_b;
 	int		i;
 
 	i = 0;
 	stack_a = NULL;
+	stack_b = NULL;
 	if (ac == 1)
 	{
 		ft_printf("no args passed\n");
 		return (0);
 	}
-	stack_a = ps_create_stack(ac - 1, av + 1);
-	// ps_sort_algo(stack_a);
+	ps_create_stack(stack_a, ac - 1, av + 1);
+	// ps_sort_algo(stack_a, stack_b);
+	print_stuff(stack_a, stack_b);
 	ps_clear(stack_a);
+	ps_clear(stack_b);
 }
 
 int	ps_get_size(t_node *stack)

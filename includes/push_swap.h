@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/07 16:33:22 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 10:12:42 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	other_sort(t_node **stack_a);
 //so source -> destination
 void	ps_push(t_node **destination, t_node **source);
 
-void	ps_sort_algo(t_node **stack_a);
+
+void	ps_sort_algo(t_node **stack_a, t_node **stack_b);
 
 void	ps_rotate_up(t_node **head);
 

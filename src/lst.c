@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:18:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/07 17:46:08 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 10:20:33 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ps_clear(t_node **head)
 {
 	t_node	*tmp;
 
+	if (!head)
+		return ;
 	tmp = (*head);
 	while (tmp != NULL)
 	{
