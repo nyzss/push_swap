@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 11:00:59 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 11:24:11 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,38 @@ void	ps_sort_algo(t_node **stack_a, t_node **stack_b)
 			printf("pa\n");
 		}
 		++i;
+	}
+}
+
+void	ps_other_sort_algo(t_node **stack_a, t_node **stack_b)
+{
+	int		size;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	size = ps_get_size(*stack_a);
+
+	while (!ps_check_sorted(*stack_a))
+	{
+		while (j < size)
+		{
+			if (((*stack_a)->index >> i)&1)
+			{
+				ps_rotate_up(stack_a);
+				printf("ra\n");
+			}
+			else
+			{
+				ps_push(stack_b, stack_a);
+				printf("pb\n");
+			}
+			j++;
+		}
+		while (ps_get_size(*stack_b) != 0)
+			ps_push(stack_a, stack_b);
+		i++;
 	}
 }
 
@@ -147,6 +179,7 @@ int		main(int ac, char **av)
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
+	// ps_other_sort_algo(&stack_a, &stack_b);
 	ps_sort_algo(&stack_a, &stack_b);
 	// print_stuff(&stack_a, &stack_b);
 	ps_clear(&stack_a);
