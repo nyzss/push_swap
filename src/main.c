@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 19:44:39 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 21:42:07 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	handle(int ac, char **av)
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
-	ps_sort(&stack_a, &stack_b);
+	if (!ps_check_sorted(stack_a))
+		ps_sort(&stack_a, &stack_b);
 	ps_clear(&stack_a);
 	ps_clear(&stack_b);
 	return (1);

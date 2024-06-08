@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:18:27 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 20:41:02 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 21:37:51 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ps_sort(t_node **stack_a, t_node **stack_b)
 	int	size;
 
 	size = ps_get_size(*stack_a);
+	if (size == 1)
+		return ;
 	if (size <= 3)
 		ps_sort_small(stack_a);
 	else if (size == 4)

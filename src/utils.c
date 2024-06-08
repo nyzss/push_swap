@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 11:27:55 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 19:40:14 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 21:44:07 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	ps_get_size(t_node *stack)
 
 int	ps_check_sorted(t_node *stack)
 {
-	while (stack != NULL)
+	while (stack->next != NULL)
 	{
-		if (stack->content > stack->next->content)
+		if (stack->index > stack->next->index)
 			return (0);
 		stack = stack->next;
 	}
