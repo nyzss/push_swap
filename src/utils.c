@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 11:27:55 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 12:11:43 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 12:26:20 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ int	*ps_create_first_tab(int ac, char **av)
 		i++;
 	}
 	return (tab);
+}
+
+int	ps_get_maxbits(int size)
+{
+	int	max_bits;
+	int	max_index;
+
+	max_bits = 0;
+	max_index = size - 1;
+	while (max_index >> max_bits != 0)
+		++max_bits;
+	return (max_bits);
 }
