@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:18:27 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 20:25:45 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 20:41:02 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ps_sort(t_node **stack_a, t_node **stack_b)
 	size = ps_get_size(*stack_a);
 	if (size <= 3)
 		ps_sort_small(stack_a);
-	else if (size <= 5)
-		ps_sort_medium(stack_a, stack_b);
+	else if (size == 4)
+		ps_sort_of_four(stack_a, stack_b);
+	else if (size == 5)
+		ps_sort_of_five(stack_a, stack_b);
 	else
 		ps_sort_big(stack_a, stack_b);
 }
@@ -49,13 +51,42 @@ void	ps_sort_small(t_node **stack_a)
 	}
 }
 
-void	ps_sort_medium(t_node **stack_a, t_node **stack_b)
+void	ps_sort_of_four(t_node **stack_a, t_node **stack_b)
 {
 	while ((*stack_a)->index != 3)
 		ps_rotate_up(stack_a, STACK_A);
 	ps_push(stack_b, stack_a, STACK_B);
 	ps_sort_small(stack_a);
 	ps_push(stack_a, stack_b, STACK_A);
+	ps_rotate_up(stack_a, STACK_A);
+}
+
+void	ps_sort_of_five(t_node **stack_a, t_node **stack_b)
+{
+	if (ps_last(*stack_a)->index == 3)
+	{
+		ps_rotate_down(stack_a, STACK_A);
+		ps_push(stack_b, stack_a, STACK_B);
+	}
+	else if ((*stack_a)->next->next->next->index == 3)
+	{
+		ps_rotate_down(stack_a, STACK_A);
+		ps_rotate_down(stack_a, STACK_A);
+		ps_push(stack_b, stack_a, STACK_B);
+	}
+	else
+	{
+		while ((*stack_a)->index != 3)
+			ps_rotate_up(stack_a, STACK_A);
+		ps_push(stack_b, stack_a, STACK_B);
+	}
+	while ((*stack_a)->index != 4)
+		ps_rotate_up(stack_a, STACK_A);
+	ps_push(stack_b, stack_a, STACK_B);
+	ps_sort_small(stack_a);
+	ps_push(stack_a, stack_b, STACK_A);
+	ps_push(stack_a, stack_b, STACK_A);
+	ps_rotate_up(stack_a, STACK_A);
 	ps_rotate_up(stack_a, STACK_A);
 }
 
@@ -86,4 +117,3 @@ void	ps_sort_big(t_node **stack_a, t_node **stack_b)
 		++i;
 	}
 }
-
