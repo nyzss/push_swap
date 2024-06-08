@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/08 10:34:22 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/08 11:54:35 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LDFLAGS = -L${LIBFT} -lft
 SRC_FILES = main.c \
 			lst.c \
 			utils.c \
-			funcs.c
+			funcs.c \
+			both.c
 
 NAME = push_swap
 

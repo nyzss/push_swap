@@ -6,27 +6,35 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 12:03:28 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 12:11:46 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_sort_algo(t_node **stack_a, t_node **stack_b)
+int	ps_get_maxbits(int size)
 {
-	int		max_index;
-	int		max_bits;
-	int		i;
-	int		size;
-	int		j;
+	int	max_bits;
+	int	max_index;
 
-	j = 0;
-	i = 0;
 	max_bits = 0;
-	size = ps_get_size(*stack_a);
 	max_index = size - 1;
 	while (max_index >> max_bits != 0)
 		++max_bits;
+	return (max_bits);
+}
+
+void	ps_sort_algo(t_node **stack_a, t_node **stack_b)
+{
+	int	max_bits;
+	int	i;
+	int	size;
+	int	j;
+
+	j = 0;
+	i = 0;
+	size = ps_get_size(*stack_a);
+	max_bits = ps_get_maxbits(size);
 	while (i < max_bits)
 	{
 		j = 0;
@@ -77,13 +85,8 @@ int	*ps_create_stack(int ac, char **av)
 	int		*another_tab;
 
 	i = 0;
-	tab = (int *)malloc(sizeof(int) * ac);
 	another_tab = (int *)malloc(sizeof(int) * ac);
-	while (i < ac)
-	{
-		tab[i] = ft_atoi(av[i]);
-		i++;
-	}
+	tab = ps_create_first_tab(ac, av);
 	ps_sort_tab(ac, &tab);
 	i = 0;
 	while (i < ac)
