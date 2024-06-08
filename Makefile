@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/08 19:31:37 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/08 19:43:33 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_FILES = main.c \
 			funcs.c \
 			both.c \
 			aux.c \
-			smaller_sort.c
+			sorts.c
 
 NAME = push_swap
 
