@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 19:57:05 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/08 20:27:50 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ int		*ps_create_stack(int ac, char **av);
 //sort
 void	ps_sort(t_node **stack_a, t_node **stack_b);
 
-void	ps_sort_medium(t_node **stack_a, t_node **stack_b);
-
 void	ps_sort_small(t_node **stack_a);
+
+void	ps_sort_of_four(t_node **stack_a, t_node **stack_b);
+
+void	ps_sort_of_five(t_node **stack_a, t_node **stack_b);
 
 void	ps_sort_big(t_node **stack_a, t_node **stack_b);
 //sort
