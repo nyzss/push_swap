@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:27:16 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 17:14:17 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 17:16:34 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	ps_atoi(const char *str)
 	}
 	result *= sign;
 	if ((str[i] != '\0' && !(ft_isdigit(str[i])))
-		|| (result > INT_MAX ))
+		|| (result > INT_MAX  || (result < INT_MIN)))
 		ps_error_exit(NULL, NULL, NO_FREE);
 	return (result);
 }
