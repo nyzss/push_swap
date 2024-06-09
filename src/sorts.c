@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:18:27 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 21:37:51 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 16:48:45 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,11 @@ void	ps_sort_of_four(t_node **stack_a, t_node **stack_b)
 
 void	ps_sort_of_five(t_node **stack_a, t_node **stack_b)
 {
-	if (ps_last(*stack_a)->index == 3)
+	if (ps_last(*stack_a)->index == 3
+		|| (*stack_a)->next->next->next->index == 3)
 	{
-		ps_rotate_down(stack_a, STACK_A);
-		ps_push(stack_b, stack_a, STACK_B);
-	}
-	else if ((*stack_a)->next->next->next->index == 3)
-	{
-		ps_rotate_down(stack_a, STACK_A);
-		ps_rotate_down(stack_a, STACK_A);
+		while ((*stack_a)->index != 3)
+			ps_rotate_down(stack_a, STACK_A);
 		ps_push(stack_b, stack_a, STACK_B);
 	}
 	else
@@ -82,6 +78,8 @@ void	ps_sort_of_five(t_node **stack_a, t_node **stack_b)
 			ps_rotate_up(stack_a, STACK_A);
 		ps_push(stack_b, stack_a, STACK_B);
 	}
+	if (ps_last(*stack_a)->index == 4)
+		ps_rotate_down(stack_a, STACK_A);
 	while ((*stack_a)->index != 4)
 		ps_rotate_up(stack_a, STACK_A);
 	ps_push(stack_b, stack_a, STACK_B);

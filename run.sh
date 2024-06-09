@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 22:07:07 by okoca             #+#    #+#              #
-#    Updated: 2024/06/09 10:46:44 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/09 14:44:52 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ fi
 
 threshold=50
 RANDOM_ARG=$(seq -$RANGE $RANGE | shuf -n $COUNT | tr '\n' ' ')
+# RANDOM_ARG=$(awk -v count="$COUNT" multiplied="$multiplied" range="$RANGE" 'BEGIN { for (i = 0; i < count; i++) print int(rand() * multiplied - range) }' | tr '\n' ' ')
+
 ARG=$RANDOM_ARG
 
 # echo -e "args: \n${GRAY}$(echo $RANDOM_ARG | tr '\n' ' ')${NC}\n"
@@ -144,9 +146,11 @@ instruct_count=$(./push_swap $ARG | wc -l 2>&1)
 
 if (( instruct_count > 0 )); then
     echo -e "Total number of instructions: ${BLUE}${instruct_count}${NC}\n\n"
-else
+elif [[ $output == "Error" ]]; then
     echo -e ${RED}!!ATTENTION!!${NC}
     echo -e "If there is 3 error messages above it means your program exits ${GREEN}correctly${NC} when error occurs"
+else
+    echo -e "${RED}ERROR Occured${NC}"
 fi
 
 valgrind --leak-check=full --show-leak-kinds=all ./push_swap $ARG > valgrind_output.txt 2>&1
