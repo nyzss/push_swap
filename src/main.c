@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 14:24:59 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 17:37:06 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	handle(int ac, char **av)
 	int		i;
 
 	i = 0;
-	tmp = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
 	tab = ps_create_stack(ac, av);
+	if (!tab)
+		ps_error_exit(NULL, NULL, NO_FREE);
 	while (i < ac)
 	{
 		tmp = ps_create_node(ps_atoi(av[i]), tab[i]);

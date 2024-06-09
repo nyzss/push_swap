@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 11:27:55 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 09:50:26 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 17:38:14 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	*ps_create_first_tab(int ac, char **av)
 
 	i = 0;
 	tab = (int *)malloc(sizeof(int) * ac);
+	if (!tab)
+		ps_error_exit(NULL, NULL, NO_FREE);
 	while (i < ac)
 	{
 		tab[i] = ps_atoi(av[i]);

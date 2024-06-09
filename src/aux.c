@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:27:16 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 17:16:34 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 17:45:36 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int	*ps_create_stack(int ac, char **av)
 	int		*another_tab;
 
 	i = 0;
-	another_tab = (int *)malloc(sizeof(int) * ac);
 	tab = ps_create_first_tab(ac, av);
+	another_tab = (int *)malloc(sizeof(int) * ac);
+	if (!another_tab)
+		return (free(tab), NULL);
 	ps_sort_tab(ac, &tab);
-	i = 0;
 	while (i < ac)
 	{
 		j = 0;
@@ -58,8 +59,7 @@ int	*ps_create_stack(int ac, char **av)
 				break ;
 			j++;
 		}
-		another_tab[i] = j;
-		i++;
+		another_tab[i++] = j;
 	}
 	free(tab);
 	return (another_tab);
@@ -96,7 +96,7 @@ int	ps_atoi(const char *str)
 	}
 	result *= sign;
 	if ((str[i] != '\0' && !(ft_isdigit(str[i])))
-		|| (result > INT_MAX  || (result < INT_MIN)))
+		|| (result > INT_MAX || (result < INT_MIN)))
 		ps_error_exit(NULL, NULL, NO_FREE);
 	return (result);
 }
