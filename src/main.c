@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 14:03:10 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:19:04 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ void	handle(int ac, char **av)
 	free(tab);
 }
 
-void	ps_check_params(int ac, char **av)
+void	ps_check_duplicate(int ac, char **av)
 {
 	int	*tab;
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < ac)
-		ps_atoi(av[i++]);
 	tab = ps_create_first_tab(ac, av);
 	while (i < ac)
 	{
@@ -64,8 +62,21 @@ void	ps_check_params(int ac, char **av)
 		}
 		i++;
 	}
-	i = 0;
 	free(tab);
+}
+
+void	ps_check_params(int ac, char **av)
+{
+	int	i;
+
+	i = 0;
+	while (i < ac)
+	{
+		if (av[i][0] == '\0')
+			ps_error_exit(NULL, NULL, NO_FREE);
+		ps_atoi(av[i++]);
+	}
+	ps_check_duplicate(ac, av);
 }
 
 int	main(int ac, char **av)
