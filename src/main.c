@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 14:19:04 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:24:59 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,23 @@ void	ps_check_duplicate(int ac, char **av)
 void	ps_check_params(int ac, char **av)
 {
 	int	i;
+	int	j;
+	int	last_digit;
 
 	i = 0;
 	while (i < ac)
 	{
 		if (av[i][0] == '\0')
+			ps_error_exit(NULL, NULL, NO_FREE);
+		last_digit = 0;
+		j = 0;
+		while (av[i][j])
+		{
+			if (ft_isdigit(av[i][j]))
+				last_digit++;
+			j++;
+		}
+		if (last_digit == 0)
 			ps_error_exit(NULL, NULL, NO_FREE);
 		ps_atoi(av[i++]);
 	}
