@@ -6,13 +6,13 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 09:50:06 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 10:46:56 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	handle(int ac, char **av)
+void	handle(int ac, char **av)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
@@ -29,7 +29,7 @@ int	handle(int ac, char **av)
 	{
 		tmp = ps_create_node(ps_atoi(av[i]), tab[i]);
 		if (!tmp)
-			return (1);
+			ps_error_exit(&stack_a, &stack_b, FREE);
 		ps_add_back(&stack_a, tmp);
 		i++;
 	}
@@ -37,7 +37,7 @@ int	handle(int ac, char **av)
 		ps_sort(&stack_a, &stack_b);
 	ps_clear(&stack_a);
 	ps_clear(&stack_b);
-	return (1);
+	free(tab);
 }
 
 void	ps_check_params(int ac, char **av)
@@ -47,6 +47,8 @@ void	ps_check_params(int ac, char **av)
 	int	j;
 
 	i = 0;
+	while (i < ac)
+		ps_atoi(av[i++]);
 	tab = ps_create_first_tab(ac, av);
 	while (i < ac)
 	{
@@ -54,14 +56,15 @@ void	ps_check_params(int ac, char **av)
 		while (j < ac)
 		{
 			if (tab[i] == tab[j] && j != i)
+			{
+				free(tab);
 				ps_error_exit(NULL, NULL, NO_FREE);
+			}
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while (i < ac)
-		ps_atoi(av[i++]);
 	free(tab);
 }
 
