@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 20:27:50 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 09:30:44 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 
 //REMOVE
 # include <stdio.h>
+# include <limits.h>
 //REMOVE
 
 # define STACK_A 0
 # define STACK_B 1
+
+# define FREE 1
+# define NO_FREE 0
 
 typedef struct node
 {
@@ -48,6 +52,10 @@ int		*ps_create_first_tab(int ac, char **av);
 void	ps_sort_tab(int ac, int **tab);
 
 int		*ps_create_stack(int ac, char **av);
+
+void	ps_error_exit(t_node **stack_a, t_node **stack_b, int is_free);
+
+int		ps_atoi(const char *str);
 
 //sort
 void	ps_sort(t_node **stack_a, t_node **stack_b);

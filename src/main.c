@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 21:42:07 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 09:50:06 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	handle(int ac, char **av)
 	tmp = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
-	tab = ps_create_stack(ac - 1, av + 1);
-	while (i < ac - 1)
+	tab = ps_create_stack(ac, av);
+	while (i < ac)
 	{
-		tmp = ps_create_node(ft_atoi(av[i + 1]), tab[i]);
+		tmp = ps_create_node(ps_atoi(av[i]), tab[i]);
 		if (!tmp)
 			return (1);
 		ps_add_back(&stack_a, tmp);
@@ -40,15 +40,38 @@ int	handle(int ac, char **av)
 	return (1);
 }
 
+void	ps_check_params(int ac, char **av)
+{
+	int	*tab;
+	int	i;
+	int	j;
+
+	i = 0;
+	tab = ps_create_first_tab(ac, av);
+	while (i < ac)
+	{
+		j = 0;
+		while (j < ac)
+		{
+			if (tab[i] == tab[j] && j != i)
+				ps_error_exit(NULL, NULL, NO_FREE);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < ac)
+		ps_atoi(av[i++]);
+	free(tab);
+}
+
 int	main(int ac, char **av)
 {
+	ac--;
+	av++;
 	if (ac == 1)
-	{
-		ft_printf("no args passed\n");
 		return (0);
-	}
-	if (handle(ac, av) == 1)
-		return (0);
-	else
-		return (1);
+	ps_check_params(ac, av);
+	handle(ac, av);
+	return (0);
 }

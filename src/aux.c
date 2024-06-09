@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:27:16 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 19:27:23 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 09:49:09 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	*ps_create_stack(int ac, char **av)
 		j = 0;
 		while (j < ac)
 		{
-			if (ft_atoi(av[i]) == tab[j])
+			if (ps_atoi(av[i]) == tab[j])
 				break ;
 			j++;
 		}
@@ -63,4 +63,50 @@ int	*ps_create_stack(int ac, char **av)
 	}
 	free(tab);
 	return (another_tab);
+}
+
+static int	ft_isspace(int c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
+
+int	ps_atoi(const char *str)
+{
+	int		i;
+	int		sign;
+	long	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	if ((str[i] != '\0' && !(ft_isdigit(str[i])))
+		|| (result > INT_MAX || result < INT_MIN))
+		ps_error_exit(NULL, NULL, NO_FREE);
+	return (result * sign);
+}
+
+void	ps_error_exit(t_node **stack_a, t_node **stack_b, int is_free)
+{
+	if (is_free == FREE)
+	{
+		ps_clear(stack_a);
+		ps_clear(stack_b);
+	}
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	exit (EXIT_FAILURE);
 }

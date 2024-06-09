@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 11:27:55 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/08 21:44:07 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 09:50:26 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	*ps_create_first_tab(int ac, char **av)
 	tab = (int *)malloc(sizeof(int) * ac);
 	while (i < ac)
 	{
-		tab[i] = ft_atoi(av[i]);
+		tab[i] = ps_atoi(av[i]);
 		i++;
 	}
 	return (tab);
