@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:39:45 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 10:46:56 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 14:03:10 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int ac, char **av)
 {
 	ac--;
 	av++;
-	if (ac == 1)
+	if (ac == 0)
 		return (0);
 	ps_check_params(ac, av);
 	handle(ac, av);
