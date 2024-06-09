@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 20:00:31 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/09 09:30:44 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/09 17:59:13 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-
-//REMOVE
-# include <stdio.h>
 # include <limits.h>
-//REMOVE
 
 # define STACK_A 0
 # define STACK_B 1
