@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/08 19:43:33 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/10 08:19:33 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC_DIR = src/
 INCLUDES_DIR = includes
 
 LIBFT = libft
+
+LIBFT_TARGET = ${LIBFT}/libft.a
 
 CFLAGS = -Wall -Werror -Wextra -I${INCLUDES_DIR} -I${LIBFT} -g
 
@@ -39,12 +41,12 @@ OBJS = ${SRC:.c=.o}
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS} build_lib
+${NAME}: ${OBJS} ${LIBFT_TARGET}
 	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o ${NAME}
 
 all: ${NAME}
 
-build_lib:
+${LIBFT_TARGET}:
 	make -C ${LIBFT}
 
 clean:
@@ -57,4 +59,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all build_lib clean fclean re
+.PHONY: all clean fclean re
